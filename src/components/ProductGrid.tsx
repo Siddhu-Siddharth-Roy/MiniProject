@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 
-// Default product data (only used if localStorage is empty)
+// Default product data (with specified towels already removed)
 const defaultProducts = [
   {
     id: '1',
@@ -42,45 +41,33 @@ const defaultProducts = [
     image: 'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Sport',
     isBestseller: true
-  },
-  {
-    id: '6',
-    name: 'Bamboo Bath Sheet',
-    price: 49.99,
-    image: 'https://images.unsplash.com/photo-1613545405832-ef47cb0e255f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'Bath',
-  },
-  {
-    id: '7',
-    name: 'Waffle Weave Hand Towel',
-    price: 26.99,
-    image: 'https://images.unsplash.com/photo-1551854838-212c9a5d7325?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'Hand',
-  },
-  {
-    id: '8',
-    name: 'Kids Hooded Towel',
-    price: 34.99,
-    image: 'https://images.unsplash.com/photo-1629392554711-1b50db125f1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'Kids',
-    isNew: true
   }
 ];
-
-// Filter categories
-const categories = ['All', 'Bath', 'Hand', 'Face', 'Beach', 'Sport', 'Kids'];
 
 const ProductGrid = () => {
   const [products, setProducts] = useState(defaultProducts);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [visibleProducts, setVisibleProducts] = useState(4);
   
-  // Load products from localStorage
+  // Load products from localStorage and ensure removed towels are not present
   useEffect(() => {
     const savedProducts = localStorage.getItem('towelProducts');
     if (savedProducts) {
-      setProducts(JSON.parse(savedProducts));
+      const parsedProducts = JSON.parse(savedProducts);
+      // Check if removed towels are present in localStorage
+      const removedTowelNames = ['Bamboo Bath Sheet', 'Waffle Weave Hand Towel', 'Kids Hooded Towel'];
+      const hasRemovedTowels = parsedProducts.some((product: any) =>
+        removedTowelNames.includes(product.name)
+      );
+      
+      if (hasRemovedTowels) {
+        // If removed towels are found, reset localStorage with defaultProducts
+        localStorage.setItem('towelProducts', JSON.stringify(defaultProducts));
+        setProducts(defaultProducts);
+      } else {
+        // Otherwise, use the saved products
+        setProducts(parsedProducts);
+      }
     } else {
       // If no products found in localStorage, save the default products
       localStorage.setItem('towelProducts', JSON.stringify(defaultProducts));
@@ -129,22 +116,10 @@ const ProductGrid = () => {
         
         {/* Products grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredProducts.slice(0, visibleProducts).map((product) => (
+          {filteredProducts.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
         </div>
-        
-        {/* Load more button */}
-        {visibleProducts < filteredProducts.length && (
-          <div className="text-center mt-12">
-            <button 
-              onClick={() => setVisibleProducts(prev => prev + 4)}
-              className="border border-towel-dark text-towel-dark px-6 py-2.5 rounded-lg font-medium transition-all duration-300 hover:bg-towel-dark hover:text-white"
-            >
-              Load More
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );
