@@ -17,10 +17,13 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { motion } from "framer-motion";
 
+// Zod schema for form validation
 const signupSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  phone: z.string()
+    .length(10, "Phone number must be exactly 10 digits")
+    .regex(/^\d{10}$/, "Phone number must contain only digits"),
   password: z.string().min(6, "Password must be at least 6 characters"),
   confirmPassword: z.string().min(6, "Confirm password must be at least 6 characters"),
 }).refine((data) => data.password === data.confirmPassword, {
@@ -34,6 +37,7 @@ const Signup = () => {
   const { signup } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
+  // Initialize form
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -45,36 +49,39 @@ const Signup = () => {
     }
   });
 
+  // Handle form submission
   const onSubmit = async (values: z.infer<typeof signupSchema>) => {
     setIsLoading(true);
-    
     try {
       const success = await signup(values.email, values.name, values.password, 'customer', values.phone);
-      
       if (success) {
         toast({
           title: "Account Created",
-          description: "Your account has been successfully created and you're now logged in!",
+          description: "Your account has been successfully created!",
         });
-        
         navigate("/");
       } else {
         toast({
           title: "Signup Failed",
-          description: "This email may already be registered. Please try again or use a different email.",
+          description: "This email may already be registered.",
           variant: "destructive"
         });
       }
     } catch (error) {
       toast({
         title: "Signup Error",
-        description: "An unexpected error occurred. Please try again.",
+        description: "An unexpected error occurred.",
         variant: "destructive"
       });
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Filter non-digit input for phone number
+  const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>, onChange: (value: string) => void) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+    onChange(value);
   };
 
   return (
@@ -124,7 +131,14 @@ const Signup = () => {
                 <FormItem>
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="+91 1234567890" {...field} />
+                    <Input 
+                      type="tel"
+                      inputMode="numeric"
+                      maxLength={10}
+                      placeholder="1234567890"
+                      {...field}
+                      onChange={(e) => handlePhoneInput(e, field.onChange)}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
