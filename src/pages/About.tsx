@@ -30,14 +30,6 @@ const About = () => {
           
           <h1 className="text-4xl md:text-5xl font-bold mb-8">About SE Brand</h1>
           
-          <div className="relative rounded-xl overflow-hidden h-80 mb-12">
-            <img 
-              src="https://images.unsplash.com/photo-1602810320073-1230c46d89d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" 
-              alt="SE brand" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          
           <div className="prose max-w-none">
             <h2>Our Story</h2>
             <p>
