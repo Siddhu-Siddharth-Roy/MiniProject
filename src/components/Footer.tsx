@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-semibold mb-4">DTex TOWELS</h3>
+            <h3 className="text-2xl font-semibold mb-4">SE TOWELS</h3>
             <p className="text-towel-gray mb-4 max-w-md">
               Premium towels crafted with the finest materials for a luxurious bathing experience.
             </p>
@@ -70,7 +70,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-3 text-towel-accent flex-shrink-0" />
-                <span className="text-towel-gray">contact@dtex.com</span>
+                <span className="text-towel-gray">contact@se.com</span>
               </li>
             </ul>
           </div>
