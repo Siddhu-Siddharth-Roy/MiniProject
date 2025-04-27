@@ -28,7 +28,7 @@ const About = () => {
             Back to Home
           </Link>
           
-          <h1 className="text-4xl md:text-5xl font-bold mb-8">About DTex Brand</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-8">About SE Brand</h1>
           
           <div className="relative rounded-xl overflow-hidden h-80 mb-12">
             <img 
