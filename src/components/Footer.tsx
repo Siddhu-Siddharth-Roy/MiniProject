@@ -82,7 +82,7 @@ const Footer = () => {
         <div className="container mx-auto py-4 px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-towel-gray text-sm">
-              © {new Date().getFullYear()} DTex. All rights reserved.
+              © 2025 SE. All rights reserved.
             </p>
             <div className="flex items-center space-x-6">
               <Link to="/privacy-policy" className="text-towel-gray text-sm hover:text-white transition-colors">
