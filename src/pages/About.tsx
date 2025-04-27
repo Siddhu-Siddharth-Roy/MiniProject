@@ -33,7 +33,7 @@ const About = () => {
           <div className="relative rounded-xl overflow-hidden h-80 mb-12">
             <img 
               src="https://images.unsplash.com/photo-1602810320073-1230c46d89d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" 
-              alt="DTex brand" 
+              alt="SE brand" 
               className="w-full h-full object-cover"
             />
           </div>
@@ -41,21 +41,21 @@ const About = () => {
           <div className="prose max-w-none">
             <h2>Our Story</h2>
             <p>
-              Founded in 2010, DTex has been at the forefront of premium towel manufacturing for over a decade. 
+              Founded in 2010, SE has been at the forefront of premium towel manufacturing for over a decade. 
               What began as a small family business has grown into a renowned brand recognized for exceptional 
               quality, innovative designs, and sustainable manufacturing practices.
             </p>
             
             <h2>Our Mission</h2>
             <p>
-              At DTex, we believe that everyday items should bring joy and comfort to your life. Our mission is to 
+              At SE, we believe that everyday items should bring joy and comfort to your life. Our mission is to 
               elevate your daily routine with towels that combine luxury, functionality, and sustainability. 
               We're committed to creating products that not only feel amazing but also minimize environmental impact.
             </p>
             
             <h2>Quality & Craftsmanship</h2>
             <p>
-              Each DTex towel is crafted with meticulous attention to detail using only the finest materials. 
+              Each SE towel is crafted with meticulous attention to detail using only the finest materials. 
               We source premium long-staple cotton from sustainable farms and employ traditional weaving techniques 
               combined with modern technology to create towels with exceptional absorbency, durability, and softness.
             </p>
@@ -63,7 +63,7 @@ const About = () => {
             <h2>Innovation</h2>
             <p>
               Our dedicated research and development team continuously explores new materials, weaving techniques, 
-              and finishing processes to enhance our products. DTex's proprietary Ultra Absorbent Technology ensures 
+              and finishing processes to enhance our products. SE's proprietary Ultra Absorbent Technology ensures 
               our towels dry faster while maintaining their softness wash after wash.
             </p>
             
