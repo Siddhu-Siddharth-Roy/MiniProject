@@ -34,11 +34,11 @@ const Hero = () => {
           {/* Text content */}
           <div className={`max-w-2xl transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <span className="inline-block px-3 py-1 rounded-full bg-towel-accent/20 text-towel-navy text-sm font-medium mb-6 animate-fade-in">
-              Premium Collection
+              Industry leading manufacturer
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-tight">
-              Elevate Your <br />
-              <span className="text-towel-blue">Bath Experience</span>
+              Discover a diverse collections <br />
+              <span className="text-towel-blue">of modern Towels</span>
             </h1>
             <p className="text-lg text-towel-gray mb-8 max-w-lg">
               Discover our collection of premium towels crafted with the finest materials. 
